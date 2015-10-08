@@ -364,6 +364,12 @@ namespace :chillingeffects do
     puts "Difference of: #{broad - narrow}"
   end
 
+  desc "Find fields names in notice fields"
+    task scrub_mangled_fields: :environment do
+    search = Notice.where("title LIKE ? OR subject LIKE ? OR body LIKE ?", "\\s*url_.*$","\\s*url_.*$","\\s*url_.*$").count
+    puts "#{search}"
+  end
+
   desc "Reassign Dmca Notices to DMCA notices"
   task up_dmca_migration: :environment do
     Notice.where(type: 'Dmca').update_all(type: 'DMCA')
