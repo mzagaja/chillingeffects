@@ -35,8 +35,6 @@ Chill::Application.routes.draw do
 
   resources :blog_entries, only: [:index, :show]
 
-  resources :counter_notices
-
   match :faceted_search, controller: 'notices/search', action: 'index'
 
   # N.B. no constraints on topics, that would require a db call
