@@ -379,4 +379,9 @@ namespace :chillingeffects do
   task down_dmca_migration: :environment do
     Notice.where(type: 'DMCA').update_all(type: 'Dmca')
   end
+
+  desc "Actually remove Notices with 'url_...' incorrectly tacked on to their subjects (greedy)."
+  task do_scrub_mangled_subjects: :environment do
+    Notice.update_all("subject = regexp_replace(subject, '\\s*url_.*$', '', 'g')")
+  end
 end
