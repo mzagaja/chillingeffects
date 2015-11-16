@@ -33,6 +33,10 @@ module Ingestor
         'Google, Inc.'
       end
 
+      def default_submitter
+        'Google, Inc.'
+      end
+
       private
 
       def sender(content)
