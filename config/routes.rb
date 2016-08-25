@@ -18,6 +18,8 @@ Chill::Application.routes.draw do
     end
   end
 
+  resources :works, only: [:update]
+
   resources :counter_notices, only: [:new, :create]
 
   namespace :entities do
