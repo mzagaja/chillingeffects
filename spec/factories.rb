@@ -222,6 +222,7 @@ FactoryGirl.define do
   end
 
   factory :work do
+    id 1
     description "Something copyrighted"
 
     trait :with_infringing_urls do

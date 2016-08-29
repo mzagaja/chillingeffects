@@ -3,8 +3,15 @@ class WorksController < ApplicationController
 
   def update
     @work = Work.find(params[:id])
-    @work.update_attributes(work_params)
-    render nothing: true
+    respond_to do |format|
+      format.json do
+        if @work && @work.update_attributes(work_params)
+          head :ok, location: @work
+        else
+          render json: submission.errors, status: :unprocessable_entity
+        end
+      end
+    end
   end
 
   private
